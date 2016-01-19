@@ -1,4 +1,4 @@
-# require('byebug')
+require('byebug')
 class Primes
 
   @@memo = {}
@@ -88,8 +88,8 @@ def likes(names)
 end
 
 
-p likes [] #// must be "no one likes this"
-p likes ["Peter"] #// must be "Peter likes this"
-p likes ["Jacob", "Alex"] #// must be "Jacob and Alex like this"
-p likes ["Max", "John", "Mark"] #// must be "Max, John and Mark like this"
-p likes ["Alex", "Jacob", "Mark", "Max"] #// must be "Alex, Jacob and 2 others like this"
+# p likes [] #// must be "no one likes this"
+# p likes ["Peter"] #// must be "Peter likes this"
+# p likes ["Jacob", "Alex"] #// must be "Jacob and Alex like this"
+# p likes ["Max", "John", "Mark"] #// must be "Max, John and Mark like this"
+# p likes ["Alex", "Jacob", "Mark", "Max"] #// must be "Alex, Jacob and 2 others like this"
