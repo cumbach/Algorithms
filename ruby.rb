@@ -93,3 +93,40 @@ end
 # p likes ["Jacob", "Alex"] #// must be "Jacob and Alex like this"
 # p likes ["Max", "John", "Mark"] #// must be "Max, John and Mark like this"
 # p likes ["Alex", "Jacob", "Mark", "Max"] #// must be "Alex, Jacob and 2 others like this"
+
+
+def sort3(strings, length)
+  (length - 1).downto(0) do |i|
+    buckets = Array.new(26) { [] }
+    strings.each do |string|
+      letter = string[i]
+      buckets[letter.ord - "a".ord] << string
+    end
+
+    strings = []
+    buckets.each do |bucket|
+      bucket.each { |string| strings << string }
+    end
+  end
+
+  strings
+end
+
+
+def findNb(m)
+    count = 1
+    total = 1
+    while total != m
+      return -1 if total > m
+      count += 1
+      total += count**3
+    end
+    count
+end
+# p sort3(['azc', 'def', 'ags'], 3)
+puts findNb(1071225)# --> 45
+puts findNb(91716553919377)# --> -1
+puts findNb(4183059834009)
+puts findNb(24723578342962)
+puts findNb(135440716410000)
+puts findNb(40539911473216)

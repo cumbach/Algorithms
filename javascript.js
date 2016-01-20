@@ -7,3 +7,75 @@ var uniqueInOrder=function(iterable){
   }
   return result;
 }
+
+var maxSequence = function(arr){
+  var i = 0;
+  var j;
+  var max = -1;
+  var holder;
+  while (i < arr.length) {
+    j = i+1;
+    holder = arr[i];
+    while (j < arr.length) {
+      holder += arr[j];
+      if (max < holder) {max = holder}
+      j += 1;
+    }
+    i += 1
+  }
+  if (max < 0) {return 0}
+  return max;
+}
+
+  // var holder;
+  // while (i < arr.length) {
+  //   if (arr[i] > 0) {
+  //     holder = arr[i];
+  //   } else {
+  //     break;
+  //   }
+  //   j = i + 1;
+  //   while (holder > 0 && j < arr.length) {
+  //     holder += arr[j]
+  //     j += 1;
+  //   }
+  //   if (holder > max) {
+  //     max = holder;
+  //   }
+  //   i += 1
+  // }
+
+// console.log(maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+// should be 6: [4, -1, 2, 1]
+
+var largestDifference = function(data) {
+  var i = 0;
+  var j = 0;
+  var max = 0;
+  var gdist = 0;
+  var dist;
+  var diff;
+  var result = [];
+  while (i < data.length) {
+    j = i + 1;
+    while (j < data.length) {
+      diff = data[j] - data[i];
+      dist = j - i;
+      if (diff >= 0 && dist > gdist) {
+        gdist = dist;
+        max += data;
+        result[0] = i;
+        result[1] = j;
+      }
+
+      j += 1;
+    }
+    i += 1;
+  }
+
+  return result.length === 0 ? 0 : result[1] - result[0]
+
+};
+
+console.log(largestDifference([9,4,1,10,3,4,0,-1,-2])); // 4 data[1] <= data[5], so 5 - 1 = 4
+console.log(largestDifference([3,2,1])); // 0 never finds
