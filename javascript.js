@@ -77,5 +77,20 @@ var largestDifference = function(data) {
 
 };
 
-console.log(largestDifference([9,4,1,10,3,4,0,-1,-2])); // 4 data[1] <= data[5], so 5 - 1 = 4
-console.log(largestDifference([3,2,1])); // 0 never finds
+function whoIsNext(names, r){
+  var queue = [];
+  var count = 1;
+  var newArr = []
+  while (count < r) {
+   newArr = [names[0], names[0]]
+   names.shift();
+   names = names.concat(newArr);
+   count += 1;
+  //  console.log(names)
+  }
+  return names[0];
+}
+
+// whoIsNext(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 10)=="Sheldon"
+// whoIsNext(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 52)=="Penny"
+console.log(whoIsNext(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 7230702951)=="Leonard")

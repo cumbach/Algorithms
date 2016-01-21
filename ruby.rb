@@ -124,9 +124,29 @@ def findNb(m)
     count
 end
 # p sort3(['azc', 'def', 'ags'], 3)
-puts findNb(1071225)# --> 45
-puts findNb(91716553919377)# --> -1
-puts findNb(4183059834009)
-puts findNb(24723578342962)
-puts findNb(135440716410000)
-puts findNb(40539911473216)
+# puts findNb(1071225)# --> 45
+# puts findNb(91716553919377)# --> -1
+# puts findNb(4183059834009)
+# puts findNb(24723578342962)
+# puts findNb(135440716410000)
+# puts findNb(40539911473216)
+
+def solution(arr)
+  stack = []
+  out = [-1] * arr.length
+  # debugger
+  (arr.length - 1).downto(0) do |i|
+    # p i
+    # p stack
+    while stack.length > 0 && arr[stack.last] >= arr[i]
+      out[stack.pop] = i
+      # p out
+    end
+    stack << i
+  end
+  return out
+end
+
+# p solution([9,4,1,10,3,4,0,-1,-2])
+p solution([1,2,3,4,5])
+p solution([5,4,3,2,1])
