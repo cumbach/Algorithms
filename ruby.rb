@@ -148,5 +148,48 @@ def solution(arr)
 end
 
 # p solution([9,4,1,10,3,4,0,-1,-2])
-p solution([1,2,3,4,5])
-p solution([5,4,3,2,1])
+# p solution([1,2,3,4,5])
+# p solution([5,4,3,2,1])
+
+def power(s)
+  result = [[]]
+  i = 0
+  j = 0
+  while i < s.length
+    gap = 0
+    while gap + j < s.length
+      j = i + gap
+      while j < s.length
+        temp = [s[i]].concat(s[i+gap..j])
+        # p s[i+gap..j]
+        result << temp
+        j += 1
+      end
+      gap += 1
+      j = 0
+    end
+    i += 1
+  end
+  result
+
+end
+
+def subsets(arr)
+  return [[]] if arr.empty?
+
+  val = arr[0]
+  subs = subsets(arr.drop(1))
+  new_subs = subs.map { |sub| [val] + sub }
+
+  new_subs + subs
+end
+
+
+# p subsets([1,2,3])
+
+def squareSum(numbers)
+  numbers = numbers.map{|x| x**x}
+  numbers.inject(:+)
+end
+
+p squareSum([1,2,3])

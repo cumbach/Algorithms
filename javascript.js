@@ -93,4 +93,27 @@ function whoIsNext(names, r){
 
 // whoIsNext(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 10)=="Sheldon"
 // whoIsNext(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 52)=="Penny"
-console.log(whoIsNext(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 7230702951)=="Leonard")
+// console.log(whoIsNext(["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"], 7230702951)=="Leonard")
+
+function power(s) {
+  var result = [[]];
+  var i = 0;
+  var j;
+  var gap;
+  while (i < s.length) {
+    gap = 0;
+    j = i;
+    while (gap + j <= s.length) {
+      gap = 0;
+      while (j + gap <= s.length) {
+        result.push(s.slice(i,j+gap))
+        console.log(result)
+        j += 1;
+      }
+      j += 1;
+    }
+    i += 1;
+  }
+  return result;
+}
+power([1,2,3])
