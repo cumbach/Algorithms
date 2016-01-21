@@ -192,4 +192,20 @@ def squareSum(numbers)
   numbers.inject(:+)
 end
 
-p squareSum([1,2,3])
+# p squareSum([1,2,3])
+
+def is_shuffle?(str1, str2, str3)
+  return str1.empty? && str2.empty? if str3.empty?
+
+  if str1[0] == str3[0]
+    return true if is_shuffle?(str1[1..-1], str2, str3[1..-1])
+  end
+
+  if str2[0] == str3[0]
+    return true if is_shuffle?(str1, str2[1..-1], str3[1..-1])
+  end
+
+  false
+end
+
+p is_shuffle?("abc","cde","abcde")
