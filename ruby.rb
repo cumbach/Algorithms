@@ -240,5 +240,80 @@ def largestDifference(array)
 end
 
 # largestDifference([1,2,3,4,5,6,7,8,9].reverse)
-largestDifference([9,4,1,10,3,4,0,-1,-2])
+# largestDifference([9,4,1,10,3,4,0,-1,-2])
 # p largestDifference([3,2,1])
+
+def search_substr( fullText, searchText, allowOverlap = true )
+  count = 0
+  idx = 0
+  return 0 if searchText.length == 0
+  # debugger
+  while (idx + searchText.length <= fullText.length)
+    if fullText[idx...idx+searchText.length] == searchText
+      count += 1
+      if !allowOverlap
+        idx += searchText.length - 1
+      end
+    end
+    idx += 1
+  end
+  count
+end
+
+# p search_substr('aa_bb_cc_dd_bb_e', 'bb') # should return 2 since bb shows up twice
+# p search_substr('aaabbbcccc', 'bbb') # should return 1
+# p search_substr( 'aaa', 'aa' ) # should return 2
+# p search_substr( 'aaa', '' ) # should return 0
+# p search_substr( 'aaa', 'aa', false ) # should return 1
+
+def pig_it text
+  p text
+  text = text.split(" ")
+  result = []
+  text.map.with_index do |word, idx|
+    word = word.split("")
+    word.push(word.shift)
+    result << word.join("") unless word == ["?"] || word == ['!']
+    result[idx] += "ay" unless word == ["?"] || word == ['!']
+    result[idx] += ['?'] if word == ['?']
+    debugger
+    result[idx] += ['!'] if word == ['!']
+  end
+  result.join(" ")
+end
+# p pig_it("O tempora o mores !")
+# p pig_it('Pig latin is cool')
+# p pig_it('This is my string')
+
+def luck_check (str)
+  return false unless str.is_a?(String)
+  leftsum = 0
+  rightsum = 0
+  i = 0
+  j = str.length - 1
+  half = str.length / 2
+  while i < half
+    while str[i].ord == 32 || str[j].ord == 32
+      if str[i].ord == 32
+        half += 0.5
+        i += 1
+      elsif str[j].ord == 32
+        half -= 0.5
+        j -= 1
+      end
+    end
+    leftsum += str[i].to_f
+    rightsum += str[j].to_f
+    unless str[i].ord.between?(48,57) && str[j].ord.between?(48,57)
+        raise StandardError
+    end
+    i += 1
+    j -= 1
+  end
+  return false if leftsum != rightsum
+  true
+end
+
+p luck_check(['5','6','3','2','8','1','1','6'])
+p luck_check('683000')
+p luck_check('6F43E8')
