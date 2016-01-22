@@ -208,4 +208,37 @@ def is_shuffle?(str1, str2, str3)
   false
 end
 
-p is_shuffle?("abc","cde","abcde")
+# p is_shuffle?("abc","cde","abccde")
+
+def largestDifference(array)
+  mins = []
+  max_range = 0
+
+  array.each_index do |idx|
+    mins << idx if mins.empty? || array[idx] < array[mins.last]
+    # p mins
+  end
+
+  array.reverse.each_index do |idx|
+    # p idx
+
+    unreversed_idx = array.length - 1 - idx
+
+    current_el = array[unreversed_idx]
+    # p !mins.empty? && current_el >= array[mins.last]
+    while !mins.empty? && current_el >= array[mins.last]
+      current_range = unreversed_idx - mins.last
+      max_range = current_range if current_range > max_range
+
+      p mins
+      mins.pop
+    end
+
+  end
+
+  max_range
+end
+
+# largestDifference([1,2,3,4,5,6,7,8,9].reverse)
+largestDifference([9,4,1,10,3,4,0,-1,-2])
+# p largestDifference([3,2,1])

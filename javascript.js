@@ -116,4 +116,38 @@ function power(s) {
   }
   return result;
 }
-power([1,2,3])
+// power([1,2,3])
+
+var largestDifference = function(array) {
+  var mins = [];
+  var max_range = 0;
+
+  var idx = 0;
+  array.forEach(function(el){
+    if (mins.length === 0 || el < array[mins[mins.length-1]]) {
+      mins.push(idx)
+    }
+    idx += 1;
+  });
+
+  var array2 = array.slice().reverse();
+  idx = 0;
+  var unreversed_idx;
+  var current_el;
+
+  array2.forEach(function(el){
+    unreversed_idx = array.length - 1 - idx
+    current_el = array[unreversed_idx]
+    while (!(mins.length === 0) && current_el >= array[mins[mins.length-1]]) {
+      current_range = unreversed_idx - mins[mins.length-1]
+      if (current_range > max_range) {
+        max_range = current_range
+      }
+      mins.pop();
+    }
+    idx += 1;
+  });
+  return max_range;
+};
+console.log(largestDifference([9,4,1,10,3,4,0,-1,-2]))
+// console.log(largestDifference([3,2,1]))
