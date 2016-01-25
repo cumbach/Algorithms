@@ -149,5 +149,33 @@ var largestDifference = function(array) {
   });
   return max_range;
 };
-console.log(largestDifference([9,4,1,10,3,4,0,-1,-2]))
+// console.log(largestDifference([9,4,1,10,3,4,0,-1,-2]))
 // console.log(largestDifference([3,2,1]))
+
+function isMerge(s, part1, part2) {
+
+
+  var val = true;
+  s = s.split('').filter(noSpace);
+  part1 = part1.split('').filter(noSpace);
+  part2 = part2.split('').filter(noSpace);
+  if (part1.length + part2.length !== s.length) {return false}
+  var x = part1.length-1;
+  var y = part2.length-1;
+  for (var i = s.length-1; i >= 0; i--) {
+    if (s[i] === part1[x]) {
+      x -= 1
+    } else if (s[i] === part2[y]) {
+      y -= 1
+    } else {
+      val = false;
+    }
+  }
+  return val;
+}
+
+function noSpace(lset) {
+  return lset !== ' ';
+};
+
+console.log(isMerge('Bananas from Bahamas', 'Bah  as', 'Bananas from    am'));
