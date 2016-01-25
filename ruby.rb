@@ -287,6 +287,7 @@ end
 
 def luck_check (str)
   return false unless str.is_a?(String)
+  raise StandardError if str.length == 0
   leftsum = 0
   rightsum = 0
   i = 0
@@ -314,6 +315,63 @@ def luck_check (str)
   true
 end
 
-p luck_check(['5','6','3','2','8','1','1','6'])
-p luck_check('683000')
-p luck_check('6F43E8')
+# p luck_check([''])
+# p luck_check('683000')
+# p luck_check('6F43E8')
+
+def max_uniq_psub(str)
+  return [] if str.length == 0
+  letters = str.chars
+  greatest_letter = nil
+  idx = 0
+  letters.each_with_index do |char, i|
+    if greatest_letter.nil? || char.ord > greatest_letter.ord
+      greatest_letter = char
+      idx = i
+    end
+  end
+  [str[idx]] + max_uniq_psub(str[(idx+1)..-1])
+
+end
+
+def max_unique_psub(str)
+  psub_arr = [str[str.length - 1]]
+
+  (str.length - 2).downto(0) do |i|
+    next if str[i] < psub_arr.last
+    # this is amortized O(1) time.
+    psub_arr << str[i]
+  end
+
+  psub = psub_arr.reverse.join("")
+  psub
+end
+
+# p max_uniq_psub("zywvuabx")
+# p max_unique_psub("ajksdfsahdf")
+
+def solution(digits)
+  digits = digits.split("").map {|digit| digit.to_i}
+  return digits.join.to_i if digits.length <= 5
+  highest = 0
+  indices = []
+  digits.each_with_index do |num, idx|
+    if num.to_i > highest
+      highest = num.to_i
+      indices = [digits[idx...idx+5].join]
+    elsif num.to_i == highest
+      indices << digits[idx...idx+5].join
+    end
+  end
+
+  result = 0
+  indices.each do |combo|
+    if combo.to_i > result
+      result = combo
+    end
+  end
+
+  result.to_i
+end
+
+p solution('23452342')
