@@ -227,7 +227,40 @@ function partitionOn(pred, items) {
 var i = partitionOn(isEven, items);
 // items = [9]
 
-console.log(i);
-console.log(items);
+// console.log(i);
+// console.log(items);
 // items should now be [1, 3, 5, 2, 4, 6]
 // i     should now be 3
+
+function dim() {
+  var bindArgs = [].slice.call(arguments);
+  var b;
+  var newArr;
+  for (var i = bindArgs.length - 2; i >= 0; i--) {
+    newArr = [];
+    j = 0;
+    while (j < bindArgs[i]) {
+      if (typeof bindArgs[i+1] === 'object') {
+
+        newArr.push(bindArgs[i+1].slice());
+      } else {
+        b = bindArgs[i+1];
+        newArr.push(b);
+
+      }
+      j += 1;
+    }
+    bindArgs[i] = newArr.slice();
+  }
+
+  return bindArgs[0].slice();
+}
+var d1 = dim(5,3,"x");
+var d2 = dim(3,2,3,0);
+d2[0][0][0]="A";
+
+console.log(d2);
+// Test.expect(d1.toString()=="x,x,x,x,x,x,x,x,x,x,x,x,x,x,x");
+// Test.expect(d2.toString().length==(3*2*3*2-1));
+//
+// Test.expect(d2[0].toString()!=d2[1].toString());
