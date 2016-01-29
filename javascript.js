@@ -178,4 +178,56 @@ function noSpace(lset) {
   return lset !== ' ';
 };
 
-console.log(isMerge('Bananas from Bahamas', 'Bah  as', 'Bananas from    am'));
+// console.log(isMerge('Bananas from Bahamas', 'Bah  as', 'Bananas from    am'));
+
+var palindromeChainLength = function(n) {
+  var count = 0;
+  while (String(n).split("").join('') !== String(n).split("").reverse().join('')) {
+    n += Number(String(n).split("").reverse().join(''));
+    n = Number(String(n).split("").reverse().join(''));
+    count += 1;
+  }
+  return count;
+};
+
+// console.log(palindromeChainLength(87))
+
+var items = [1, 2, 3, 4, 5, 6];
+function isEven(n) {return n % 2 == 0}
+
+
+function partitionOn(pred, items) {
+  var left = [];
+  var right = [];
+  items.map(function(item){
+    if (pred(item)) {
+      right.push(item);
+    } else {
+      left.push(item);
+    }
+  });
+  items.length = 0;
+  items = [3];
+
+  // return items = left.concat(right);
+  return left.length;
+
+}
+
+// function partitionOn(pred, items) {
+//   var f = items.filter( function(e) { return !pred(e); } );
+//   var t = items.filter(pred);
+//   items.length = 0;
+//   for(var i = 0; i < f.length; i++) { items.push(f[i]); }
+//   for(var i = 0; i < t.length; i++) { items.push(t[i]); }
+//
+//   return f.length;
+//
+// }
+var i = partitionOn(isEven, items);
+// items = [9]
+
+console.log(i);
+console.log(items);
+// items should now be [1, 3, 5, 2, 4, 6]
+// i     should now be 3

@@ -374,4 +374,31 @@ def solution(digits)
   result.to_i
 end
 
-p solution('23452342')
+# p solution('23452342')
+
+def mergesort(array)
+  return array if array.length < 2
+
+  left = array[0...array.length/2]
+  right = array[array.length/2..array.length-1]
+
+  merge(mergesort(left), mergesort(right))
+end
+
+def merge(left, right)
+  result = []
+  until left.empty? || right.empty?
+    case left.first <=> right.first
+    when -1
+      result << left.shift
+    when 0
+      result << left.shift
+    when 1
+      result << right.shift
+    end
+  end
+
+  result + left + right
+end
+
+p mergesort([3,7,2,5,7,8])
