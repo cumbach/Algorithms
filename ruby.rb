@@ -401,4 +401,40 @@ def merge(left, right)
   result + left + right
 end
 
-p mergesort([3,7,2,5,7,8])
+# p mergesort([3,7,2,5,7,8])
+
+array = [1,2,3,4,5]
+def tester(array)
+  array.map {|x| x*2}
+end
+
+# array = tester(array)
+# p array
+
+
+class Timer
+  attr_accessor :time
+
+  def initialize
+    @time = 0
+  end
+
+  def start
+    @start = Time.now
+  end
+
+  def stop
+    @time = Time.now - @start
+  end
+
+  def elapsed
+    p @time.to_f
+    # p Time.now
+  end
+end
+
+t = Timer.new
+t.start
+sleep(2)
+t.stop
+t.elapsed

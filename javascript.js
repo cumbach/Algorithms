@@ -234,32 +234,44 @@ var i = partitionOn(isEven, items);
 
 function dim() {
   var bindArgs = [].slice.call(arguments);
-  var b;
-  var newArr;
-  for (var i = bindArgs.length - 2; i >= 0; i--) {
-    newArr = [];
+
+  for (var i = 0; i < bindArgs.length - 1; i++) {
+    newArr = new Array (bindArgs[i])
     j = 0;
     while (j < bindArgs[i]) {
-      if (typeof bindArgs[i+1] === 'object') {
-
-        newArr.push(bindArgs[i+1].slice());
+      if (i !== bindArgs.length - 2) {
+        newArr[j] = new Array (bindArgs[i+1]);
       } else {
-        b = bindArgs[i+1];
-        newArr.push(b);
-
+        newArr[j] = bindArgs[i]
       }
       j += 1;
     }
-    bindArgs[i] = newArr.slice();
+    // bindArgs[i] = newArr;
+
+
   }
 
-  return bindArgs[0].slice();
+  // for (var i = bindArgs.length - 2; i >= 0; i--) {
+  //   newArr = new Array (bindArgs[i]);
+  //   j = 0;
+  //   while (j < bindArgs[i]) {
+  //     if (typeof bindArgs[i+1] === 'object') {
+  //       newArr[j] = bindArgs[i+1].slice();
+  //     } else {
+  //       newArr[j] = bindArgs[i+1];
+  //     }
+  //     j += 1;
+  //   }
+  //   bindArgs[i] = newArr.slice();
+  // }
+  return bindArgs;
 }
-var d1 = dim(5,3,"x");
-var d2 = dim(3,2,3,0);
-d2[0][0][0]="A";
 
-console.log(d2);
+var d1 = dim(5,3,"x");
+// var d2 = dim(3,2,3,0);
+// d2[0][0][0]="A";
+
+console.log(d1);
 // Test.expect(d1.toString()=="x,x,x,x,x,x,x,x,x,x,x,x,x,x,x");
 // Test.expect(d2.toString().length==(3*2*3*2-1));
 //
