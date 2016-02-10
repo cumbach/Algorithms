@@ -433,8 +433,53 @@ class Timer
   end
 end
 
-t = Timer.new
-t.start
-sleep(2)
-t.stop
-t.elapsed
+# t = Timer.new
+# t.start
+# sleep(2)
+# t.stop
+# t.elapsed
+
+
+bin='01'
+oct='01234567'
+dec='0123456789'
+hex='0123456789abcdef'
+allow='abcdefghijklmnopqrstuvwxyz'
+allup='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+alpha='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+alphanum='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+def convert(input, source, target)
+  # num = input.to_i
+  # newin = []
+  # while num > 0
+  #   newin.unshift(num % source.length)
+  #   num /= source.length
+  # end
+  # 3632
+  # p newin
+
+  result = ""
+  i = 0
+  while i < input.length
+    num = source.to_i
+    num /= source.length
+    idx = source.index(input)
+    while idx > 0
+      result += (idx % target.length).to_s
+      idx /= target.length
+
+
+
+  end
+  p result
+end
+
+convert("15", dec, bin) #should return "1111"
+convert("15", dec, oct) #should return "17"
+convert("1010", bin, dec) #should return "10"
+convert("1010", bin, hex) #should return "a"
+
+convert("0", dec, alpha) #should return "a"
+convert("27", dec, allow) #should return "bb"
+convert("hello", allow, hex) #should return "320048"
