@@ -541,7 +541,19 @@ end
 # mix(s1, s2) --> "=:aaaaaa/2:eeeee/=:fffff/1:tt/2:rr/=:hh"
 
 def group_in_10s(*args)
-  p *args
+  result = []
+  arguments = *args
+  arguments.each do |arg|
+    if result[arg/10]
+      result[arg/10] << arg
+    else
+      result[arg/10] = [arg]
+    end
+  end
+  p result
+
+  # cool = *args
+  # p cool[3]
 end
 group_in_10s(8, 12, 38, 3, 17, 19, 25, 35, 50)
 
