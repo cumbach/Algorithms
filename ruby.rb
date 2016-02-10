@@ -550,12 +550,9 @@ def group_in_10s(*args)
       result[arg/10] = [arg]
     end
   end
-  p result
-
-  # cool = *args
-  # p cool[3]
+  result
 end
-group_in_10s(8, 12, 38, 3, 17, 19, 25, 35, 50)
+# group_in_10s(8, 12, 38, 3, 17, 19, 25, 35, 50)
 
 # grouped = group_in_10s(8, 12, 38, 3, 17, 19, 25, 35, 50)
 #

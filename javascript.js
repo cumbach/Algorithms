@@ -267,12 +267,68 @@ function dim() {
   return bindArgs;
 }
 
-var d1 = dim(5,3,"x");
+// var d1 = dim(5,3,"x");
 // var d2 = dim(3,2,3,0);
 // d2[0][0][0]="A";
 
-console.log(d1);
+// console.log(d1);
 // Test.expect(d1.toString()=="x,x,x,x,x,x,x,x,x,x,x,x,x,x,x");
 // Test.expect(d2.toString().length==(3*2*3*2-1));
 //
 // Test.expect(d2[0].toString()!=d2[1].toString());
+
+function groupIn10s(args) {
+  var result = [];
+  var args = Array.prototype.slice.call(arguments);
+  args.forEach(function(arg){
+    if (result[Math.floor(arg/10)]) {
+      result[Math.floor(arg/10)].push(arg)
+    } else {
+      result[Math.floor(arg/10)] = [arg]
+    }
+  });
+  console.log(result)
+
+  result = result.map(function(arr){
+    return arr.sort();
+  });
+  return result;
+}
+
+// console.log(groupIn10s(8, 12, 38, 3, 17, 19, 25, 35, 50))
+
+// grouped[0]     // [3, 8]
+// grouped[1]     // [12, 17, 19]
+// grouped[2]     // [25]
+// grouped[3]     // [35, 38]
+// grouped[4]     // undefined
+// grouped[5]     // [50]
+
+// var list = 2 -> 1 -> 3 -> 6 -> 5 -> null
+//
+// function reverse(list) = {
+//   return node if node.next === null;
+//
+//   flip(list.head, list.tail)
+//
+//   node.next.next = node
+//
+//   // return reverse(list)
+// }
+//
+// function flip(head, tail)
+//
+//
+//
+
+function Node(data) {
+  this.data = data === undefined ? null : data;
+  this.next = null;
+}
+
+function reverse(head) {
+
+}
+
+// var i = reverse(list) === 5 -> 6 -> 3 -> 1 -> 2 -> null
+// console.log(list)
