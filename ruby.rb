@@ -528,9 +528,9 @@ def mix(s1, s2)
 
 end
 
-s1 = "my&friend&Paul has heavy hats! &"
-s2 = "my friend John has many many friends &"
-mix(s1, s2) ## --> "2:nnnnn/1:aaaa/1:hhh/2:mmm/2:yyy/2:dd/2:ff/2:ii/2:rr/=:ee/=:ss"
+# s1 = "my&friend&Paul has heavy hats! &"
+# s2 = "my friend John has many many friends &"
+# mix(s1, s2) ## --> "2:nnnnn/1:aaaa/1:hhh/2:mmm/2:yyy/2:dd/2:ff/2:ii/2:rr/=:ee/=:ss"
 
 # s1 = "mmmmm m nnnnn y&friend&Paul has heavy hats! &"
 # s2 = "my frie n d Joh n has ma n y ma n y frie n ds n&"
@@ -539,3 +539,17 @@ mix(s1, s2) ## --> "2:nnnnn/1:aaaa/1:hhh/2:mmm/2:yyy/2:dd/2:ff/2:ii/2:rr/=:ee/=:
 # s1="Are the kids at home? aaaaa fffff"
 # s2="Yes they are here! aaaaa fffff"
 # mix(s1, s2) --> "=:aaaaaa/2:eeeee/=:fffff/1:tt/2:rr/=:hh"
+
+def group_in_10s(*args)
+  p *args
+end
+group_in_10s(8, 12, 38, 3, 17, 19, 25, 35, 50)
+
+# grouped = group_in_10s(8, 12, 38, 3, 17, 19, 25, 35, 50)
+#
+# grouped[0]     # [3, 8]
+# grouped[1]     # [12, 17, 19]
+# grouped[2]     # [25]
+# grouped[3]     # [35, 38]
+# grouped[4]     # nil
+# grouped[5]     # [50]
