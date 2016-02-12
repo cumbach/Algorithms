@@ -332,3 +332,21 @@ function reverse(head) {
 
 // var i = reverse(list) === 5 -> 6 -> 3 -> 1 -> 2 -> null
 // console.log(list)
+
+function decompose(n) {
+    // if ()
+    // if (n <= 1) { return 1 }
+    var array = [];
+    result = [];
+    for (var i = n-1; i > 0; i--) {
+      array.push(i);
+      console.log(array)
+    }
+    array.forEach(function(num){
+      result.push(decompose(n-Math.pow(num,2)))
+      console.log(result);
+    })
+    return result;
+}
+
+decompose(4)
