@@ -337,16 +337,30 @@ function decompose(n) {
     // if ()
     // if (n <= 1) { return 1 }
     var array = [];
-    result = [];
-    for (var i = n-1; i > 0; i--) {
-      array.push(i);
-      console.log(array)
+    var result;
+    for (var i = Math.pow(n,2)-1; i > 0; i--) {
+      if (Math.sqrt(i) === Math.floor(Math.sqrt(i))) {
+        array.push(i);
+      }
     }
-    array.forEach(function(num){
-      result.push(decompose(n-Math.pow(num,2)))
-      console.log(result);
-    })
-    return result;
+
+    while (array.length > 0) {
+      var placeholder = Math.pow(n,2);
+      result = [];
+      array.forEach(function(el){
+        if (el <= placeholder) {
+          result.push(Math.sqrt(el));
+          placeholder -= el;
+        }
+      });
+      if (placeholder === 0) {
+        return result;
+      }
+      array = array.slice(1,array.length);
+      console.log(result)
+    }
+
+    return null;
 }
 
-decompose(4)
+console.log(decompose(50))
