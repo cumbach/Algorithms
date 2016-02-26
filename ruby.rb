@@ -593,4 +593,115 @@ def dbl_linear(n)
     return result
 end
 
-p dbl_linear(10)
+# p dbl_linear(10)
+
+def challenge(array, string, hash = {})
+  # debugger
+  return false if (array.length == 0 && string.length != 0) || (array.length != 0 && string.length == 0)
+  return true if array.length == 0 || string.length == 0
+
+  if hash[array.first]
+    if hash[array.first] == string[0...hash[array.first].length]
+      return challenge(array.drop(1), string[hash[array.first].length..string.length-1], hash)
+    else
+      # hash = {}
+      return false
+    end
+  end
+
+  i = 0
+  while i < string.length
+    # unless hash[string[0..i]] && hash[string[0..i]] == array.first
+    # else
+    # end
+    hash[array.first] = string[0..i]
+    if challenge(array.drop(1), string[hash[array.first].length..string.length-1], hash)
+      return true
+    else
+      hash[array.first] = nil
+    end
+
+    i += 1
+  end
+  return false
+  # p hash
+
+  # array.each {|x| hash[x] = 1}
+  # p hash
+  #
+  # if hash[array.first]
+  #   unless hash[array.first] == string[0...hash[array.first].length]
+  #     return false
+  #   else
+  #     p string
+  #     # p string[hash[array.first].length]
+  #     # p array
+  #     p hash
+  #
+  #     challenge(array.drop(1), string[hash[array.first].length..string.length-1], hash)
+  #   end
+  # end
+  #
+  # # # p hash
+  # i = 0
+  # while i < string.length
+  #
+  #   hash[array.first] = string[0..i]
+  # #
+  # #   if hash[array.first].length == string[0..i].length
+  # #
+  # #
+  #   challenge(array.drop(1), string[i+1..string.length-1], hash)
+  #     # p "hi"
+  #     # p hash
+  #   # end
+  #
+  #   p hash
+  #   i += 1
+  # end
+
+  # return false
+
+
+  # result = true
+
+  # i = 0
+  # j = 0
+  # while j < array.length
+  # while i < string.length
+
+
+
+    # p string[0..i]
+    # if !hash[array.first]
+    #   hash[array.first] = string[0..i]
+    # elsif hash[array.first].length == string[0..i].length
+    #   if hash[array.first] != string[0..i]
+    #     p string
+    #     hash = {}
+    #     return
+    #   end
+    #   p array
+      # p string
+      # p hash
+    #   return
+    # end
+
+
+
+    # if hash[array.first] && hash[array.first] == string[0..i]
+    #   p array
+    #   p string
+    #   p hash
+    # end
+    #
+    # hash[array.first] = string[0..i]
+    # challenge(array.drop(1), string[i+1...string.length], hash)
+    # # p hash
+  #   i += 1
+  # end
+  # return false
+
+end
+
+p challenge('abbab'], "redgreengreenredgreen")
