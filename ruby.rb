@@ -595,34 +595,40 @@ end
 
 # p dbl_linear(10)
 
-def challenge(array, string, hash = {})
+def wordpattern(pattern, input, hash = {})
   # debugger
-  return false if (array.length == 0 && string.length != 0) || (array.length != 0 && string.length == 0)
-  return true if array.length == 0 || string.length == 0
+  return 0 if (pattern.length == 0 && input.length != 0) || (pattern.length != 0 && input.length == 0)
+  return 1 if pattern.length == 0 || input.length == 0
 
-  if hash[array[0]]
-    if hash[array[0]] == string[0...hash[array.first].length]
-      return challenge(array[1..array.length], string[hash[array[0]].length..string.length-1], hash)
+  if hash[pattern[0]]
+    if hash[pattern[0]] == input[0...hash[pattern[0]].length]
+      return wordpattern(pattern[1..pattern.length], input[hash[pattern[0]].length..input.length-1], hash)
     else
-      return false
+      return 0
     end
   end
 
   i = 0
-  while i < string.length
+  while i < input.length
 
-    hash[array[0]] = string[0..i]
-    if challenge(array[1..array.length], string[hash[array[0]].length..string.length-1], hash)
-      return true
+    if !hash.values.include?(input[0..i])
+      hash[pattern[0]] = input[0..i]
     else
-      hash[array[0]] = nil
+      i += 1
+      next
+    end
+
+    if wordpattern(pattern[1..pattern.length], input[hash[pattern[0]].length..input.length-1], hash) == 1
+      return 1
+    else
+      hash[pattern[0]] = nil
     end
 
     i += 1
   end
-  return false
+  return 0
 
 
 end
 
-p challenge('abbab'], "redgreengreenredgreen")
+p wordpattern('abab', "rbrb")
