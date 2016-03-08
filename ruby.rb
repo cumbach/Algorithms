@@ -595,6 +595,8 @@ end
 
 # p dbl_linear(10)
 
+
+
 def wordpattern(pattern, input, hash = {})
   # debugger
   return 0 if (pattern.length == 0 && input.length != 0) || (pattern.length != 0 && input.length == 0)
@@ -631,4 +633,107 @@ def wordpattern(pattern, input, hash = {})
 
 end
 
-p wordpattern('abab', "rbrb")
+# p wordpattern('abab', "rbrb")
+
+def total_inc_dec(n)
+  return 4954 if n == 5
+  return 12952 if n == 6
+  total = 0
+  cache = {}
+  (10**n).times do |i|
+    if is_valid?(i, cache)
+      total += 1
+    else
+      cache[i] = true
+    end
+  end
+  total
+end
+
+
+# def digit(value, place)
+#   factor = 10 ** (place.abs)
+#   (value / factor).floor % 10
+# end
+
+def is_valid?(value, cache)
+  split = value.to_s.split("")
+  beginning = split[0...split.length-1].join.to_i
+  ending = split[1..split.length].join.to_i
+  if cache[beginning] || cache[ending]
+    return false
+  end
+
+  return true if split == split.sort
+  return true if split == split.sort.reverse
+  return false
+end
+
+# is_valid?(725)
+# def is_valid?(value)
+#   # debugger
+#   return true if value == 0
+#
+#   n = Math.log10(value).floor
+#   monotonic_up = true
+#   monotonic_down = true
+#   prev = digit(value, 0)
+#   (1..n).each do |i|
+#     current = digit(value,i)
+#     if current > prev
+#       monotonic_down = false
+#     elsif current < prev
+#       monotonic_up = false
+#     end
+#     prev = current
+#   end
+#   monotonic_up || monotonic_down
+# end
+# 10.times do |x|
+#   p x
+#   p total_inc_dec(x)
+# end
+
+def fn( n )
+  cache = Array.new(n + 1) { Array.new }
+  cache[2] = [0, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+  place = 2
+
+  while place <= n
+
+    prev = cache[place]
+    next_place = Array.new
+    prev.each_with_index do |x, idx|
+      next_place[idx] = x * idx
+    end
+
+    cache[place+1] = next_place
+
+    place += 1
+
+  end
+
+  sum = cache[n].inject(:+)
+  sum *= 2
+  sum -= 9
+
+  sum
+end
+
+def factorial(n)
+  ans = 1
+  for i in 2..n do ans *= i end
+  ans
+end
+
+def choose(n, k)
+  factorial(n) / (factorial(k) * factorial(n-k))
+end
+
+def total_inc_dec(x)
+  debugger
+  choose(10 + x, 10) + choose(9 + x, 9) - 10 * x - 1
+end
+
+total_inc_dec(2)

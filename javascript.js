@@ -363,4 +363,56 @@ function decompose(n) {
     return null;
 }
 
-console.log(decompose(50))
+// console.log(decompose(50))
+var fatfit = function(string) {
+  var weights = string.split(" ");
+  var result = [];
+  weights.map(function(weight){
+    var numholder = 0;
+    for (var i = 0; i < weight.length; i++) {
+      numholder += Number(weight[i]);
+    }
+    result.push(numholder);
+  });
+  return bubsortfn(result,weights).join(" ")
+}
+
+var quicksortfn = function(result, b){
+  if (result.length <= 1) {
+    return result;
+  };
+  var pivot = result[0]
+  var leftres = [];
+  var leftwei = [];
+  var rightres = [];
+  var rightwei = [];
+  for (var i = 1; i < result.length; i++) {
+    if (result[i] <= pivot) {
+      leftres.push(result[i])
+      leftwei.push(weights[i])
+    } else if (result[i] > pivot){
+      rightres.push(result[i])
+      rightwei.push(weights[i])
+    }
+  }
+}
+
+var bubsortfn = function(result, weights) {
+  var i = 0;
+  for (var i = 0; i < result.length; i++) {
+    for (var j = i+1; j < result.length; j++) {
+      if (result[j] < result[i]) {
+        var placeholder1 = result[j]
+        result[j] = result[i];
+        result[i] = placeholder1;
+        var placeholder2 = weights[j]
+        weights[j] = weights[i]
+        weights[i] = placeholder2;
+      }
+    }
+  }
+  return weights;
+}
+
+// console.log(bubsortfn([3,6,1,7], [5,8,1,4]))
+console.log(fatfit("103 123 4444 99 2000"))
