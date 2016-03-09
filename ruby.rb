@@ -751,4 +751,19 @@ def josephus(items,k)
   result
 end
 
-p josephus([1,2,3,4,5,6,7,8,9,10],2)
+# p josephus([1,2,3,4,5,6,7,8,9,10],2)
+
+def choose_best_sum(maximum, towns, arr)
+  best_max = 0
+  return nil if towns > arr.size
+  arr.combination(towns).to_a.each do |combo|
+    total = combo.inject(:+)
+    if total > best_max && total <= maximum
+      best_max = total
+    end
+  end
+  best_max
+end
+
+ys = [91, 74, 73, 85, 73, 81, 87]
+# p choose_best_sum(230, 3, ys)# -> 228
