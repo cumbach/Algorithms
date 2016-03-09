@@ -736,4 +736,19 @@ def total_inc_dec(x)
   choose(10 + x, 10) + choose(9 + x, 9) - 10 * x - 1
 end
 
-total_inc_dec(2)
+# total_inc_dec(2)
+
+def josephus(items,k)
+  result = []
+  i = k - 1
+  while !items.empty?
+    p i
+    p items
+    result << items.slice(i)
+    items.delete_at(i)
+    i = (i + k) % items.length
+  end
+  result
+end
+
+p josephus([1,2,3,4,5,6,7,8,9,10],2)

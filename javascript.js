@@ -387,7 +387,7 @@ var quicksortfn = function(result, b){
   var rightres = [];
   var rightwei = [];
   for (var i = 1; i < result.length; i++) {
-    if (result[i] <= pivot) {
+    if (result[i] < pivot) {
       leftres.push(result[i])
       leftwei.push(weights[i])
     } else if (result[i] > pivot){
@@ -398,16 +398,22 @@ var quicksortfn = function(result, b){
 }
 
 var bubsortfn = function(result, weights) {
+  console.log(result)
+  console.log(weights)
   var i = 0;
   for (var i = 0; i < result.length; i++) {
     for (var j = i+1; j < result.length; j++) {
-      if (result[j] < result[i]) {
-        var placeholder1 = result[j]
-        result[j] = result[i];
-        result[i] = placeholder1;
-        var placeholder2 = weights[j]
-        weights[j] = weights[i]
-        weights[i] = placeholder2;
+      if (result[j] <= result[i]) {
+        if (result[j] === result[i] && weights[j][0] > weights[i][0]) {
+        } else {
+          var placeholder2 = weights[j]
+          weights[j] = weights[i]
+          weights[i] = placeholder2;
+
+          var placeholder1 = result[j]
+          result[j] = result[i];
+          result[i] = placeholder1;
+        }
       }
     }
   }
@@ -415,4 +421,4 @@ var bubsortfn = function(result, weights) {
 }
 
 // console.log(bubsortfn([3,6,1,7], [5,8,1,4]))
-console.log(fatfit("103 123 4444 99 2000"))
+console.log(fatfit("2000 10003 1234000 44444444 9999 11 11 22 123"))
