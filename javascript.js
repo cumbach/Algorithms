@@ -421,3 +421,21 @@ var bubsortfn = function(result, weights) {
 // 101 3 140 33 60 70 125 53 27 164 402122 149 3219 315643 139325 124691 472461 165644 186656 294962 179969
 // console.log(bubsortfn([3,6,1,7], [5,8,1,4]))
 // console.log(fatfit("2000 10003 1234000 44444444 9999 11 11 22 123"))
+
+
+function practice() {
+  var one = 1
+  var val = nextfunc(one)
+  while (val < 50) {
+    val += nextfunc(val)
+    console.log(val)
+  }
+  console.log("hi", val)
+
+}
+
+function nextfunc(one, two, three) {
+  return one + 1;
+}
+
+practice()

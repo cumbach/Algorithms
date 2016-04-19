@@ -751,7 +751,9 @@ def josephus(items,k)
   result
 end
 
-# p josephus([1,2,3,4,5,6,7,8,9,10],2)
+# p josephus([1,2,3,4,5,6,7,8,9,10],3)
+# [3,6,9,2,7,1,8,5,10,4]
+
 
 def choose_best_sum(maximum, towns, arr)
   best_max = 0
@@ -765,5 +767,72 @@ def choose_best_sum(maximum, towns, arr)
   best_max
 end
 
-ys = [91, 74, 73, 85, 73, 81, 87]
+# ys = [91, 74, 73, 85, 73, 81, 87]
 # p choose_best_sum(230, 3, ys)# -> 228
+def number_of_routes(m, n)
+  result = 2
+  while m > 1
+    result += m
+    m -= 1
+  end
+
+  while n > 1
+    result += n
+    n -= 1
+  end
+  result
+end
+
+# p number_of_routes(1, 1) #2
+# p number_of_routes(5, 1) #6
+# p number_of_routes(3, 4) #35
+
+def format_(text, width)
+  words = text.split(" ")
+  line_length = 0
+  i = 0
+  result = ""
+  line = []
+  while i < words.length
+    if line_length + words[i].length > width
+      result += line.join(" ")
+      result += "\n"
+      line = [words[i]]
+      line_length = words[i].length + 1
+    else
+      line.push(words[i])
+      line_length += words[i].length + 1
+    end
+    i += 1
+  end
+  result += line.join(" ")
+
+end
+
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consectet" +
+  "ur risus. Cras vel urna a tellus dapibus consequat. Duis bibendum tincidunt viverra. Ph" +
+  "asellus dictum efficitur sem quis porttitor. Mauris luctus auctor diam id ultrices. Pra" +
+  "esent laoreet in enim ut placerat. Praesent a facilisis turpis."
+
+p format_(text, 30) ==
+  "Lorem ipsum dolor sit amet,"    + "\n" +
+  "consectetur adipiscing elit."   + "\n" +
+  "Aliquam nec consectetur risus." + "\n" +
+  "Cras vel urna a tellus dapibus" + "\n" +
+  "consequat. Duis bibendum"       + "\n" +
+  "tincidunt viverra. Phasellus"   + "\n" +
+  "dictum efficitur sem quis"      + "\n" +
+  "porttitor. Mauris luctus"       + "\n" +
+  "auctor diam id ultrices."       + "\n" +
+  "Praesent laoreet in enim ut"    + "\n" +
+  "placerat. Praesent a facilisis" + "\n" +
+  "turpis."
+
+p format_(text, 50) ==
+  "Lorem ipsum dolor sit amet, consectetur adipiscing" + "\n" +
+  "elit. Aliquam nec consectetur risus. Cras vel urna" + "\n" +
+  "a tellus dapibus consequat. Duis bibendum"          + "\n" +
+  "tincidunt viverra. Phasellus dictum efficitur sem"  + "\n" +
+  "quis porttitor. Mauris luctus auctor diam id"       + "\n" +
+  "ultrices. Praesent laoreet in enim ut placerat."    + "\n" +
+  "Praesent a facilisis turpis."
